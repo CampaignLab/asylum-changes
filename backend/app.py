@@ -23,6 +23,14 @@ if not os.getenv("ANTHROPIC_API_KEY"):
 app = Chalice(app_name="green-pathways-backend")
 app.log.setLevel(logging.INFO)
 
+# Configure handler with timestamp format for local development
+handler = logging.StreamHandler()
+formatter = logging.Formatter("%(asctime)s %(message)s", datefmt="%H:%M:%S")
+handler.setFormatter(formatter)
+# Clear existing handlers and add our formatted handler
+# app.log.handlers.clear()
+# app.log.addHandler(handler)
+
 openai_client = OpenAI()
 anthropic_client = anthropic.Anthropic()
 os.makedirs("/tmp/audio", exist_ok=True)
@@ -239,18 +247,18 @@ def apply_prompt_to_transcript(template):
         app.log.info(f"{template_id}: Template applied")
 
         response = openai_client.responses.create(
-            model="gpt-5-2025-08-07",
+            model="gpt-4.1-2025-04-14",
             max_output_tokens=8192,
             input=message_content,
         )
-        app.log.info(f"{template_id}: Got response from GPT-5")
+        app.log.info(f"{template_id}: Got response from GPT-4")
         response_text = response.output_text.strip()
         response_text = response_text.replace("%%NAME%%", name).replace(
             "%%POSTCODE%%", postcode
         )
         try:
             json_data = extract_json_from_response(response_text)
-            app.log.info(f"{template_id}: Response from GPT-5 OK")
+            app.log.info(f"{template_id}: Response from GPT-4 OK")
             return Response(
                 body=json_data,
                 status_code=200,
