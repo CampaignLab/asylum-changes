@@ -246,19 +246,22 @@ def apply_prompt_to_transcript(template):
         message_content = template.render(**params)
         app.log.info(f"{template_id}: Template applied")
 
-        response = openai_client.responses.create(
-            model="gpt-4.1-2025-04-14",
-            max_output_tokens=8192,
-            input=message_content,
+        response = anthropic_client.messages.create(
+            model="claude-sonnet-4-5-20250929",
+            max_tokens=8192,
+            temperature=0.6,
+            messages=[
+                {"role": "user", "content": message_content},
+            ],
         )
-        app.log.info(f"{template_id}: Got response from GPT-4")
-        response_text = response.output_text.strip()
+        app.log.info(f"{template_id}: Got response from Claude")
+        response_text = response.content[0].text.strip()
         response_text = response_text.replace("%%NAME%%", name).replace(
             "%%POSTCODE%%", postcode
         )
         try:
             json_data = extract_json_from_response(response_text)
-            app.log.info(f"{template_id}: Response from GPT-4 OK")
+            app.log.info(f"{template_id}: Response from Claude OK")
             return Response(
                 body=json_data,
                 status_code=200,

@@ -2,7 +2,12 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Loader2, CheckCircle, AlertTriangle, RefreshCw } from "lucide-react";
 import { Card, CardContent } from "../components/ui/Card";
-import {AudioSubmission, Email, ProcessingStep, processingSteps} from "../types";
+import {
+  AudioSubmission,
+  Email,
+  ProcessingStep,
+  processingSteps,
+} from "../types";
 import Button from "../components/ui/Button";
 
 const backendUrl =
@@ -31,7 +36,9 @@ const ProcessingPage: React.FC = () => {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(`Transcription failed: ${data.error || response.statusText}`);
+        throw new Error(
+          `Transcription failed: ${data.error || response.statusText}`
+        );
       }
       return data.transcript;
     },
@@ -39,18 +46,21 @@ const ProcessingPage: React.FC = () => {
   );
 
   const findEmail = useCallback(async (postcode: string | undefined) => {
-    if (!postcode  || !postcode.trim()) {
+    if (!postcode || !postcode.trim()) {
       return undefined;
     }
-    const response = await fetch(`${backendUrl}/email?postcode=${encodeURIComponent(postcode ?? '')}`, {
-      method: "GET",
-    });
+    const response = await fetch(
+      `${backendUrl}/email?postcode=${encodeURIComponent(postcode ?? "")}`,
+      {
+        method: "GET",
+      }
+    );
     const data = await response.json();
     if (!response.ok) {
       throw new Error(`Email lookup failed: ${data.error}`);
     }
     return data;
-  }, [])
+  }, []);
 
   const writeSummary = useCallback(async (body: string, path: string) => {
     const response = await fetch(`${backendUrl}/${path}`, {
@@ -62,7 +72,9 @@ const ProcessingPage: React.FC = () => {
     });
     const data = await response.json();
     if (!response.ok) {
-      throw new Error(`Text generation failed: ${data.error || response.statusText}`);
+      throw new Error(
+        `Text generation failed: ${data.error || response.statusText}`
+      );
     }
     return data;
   }, []);
@@ -93,7 +105,8 @@ const ProcessingPage: React.FC = () => {
       return;
     }
     parsedSubmission.name = userName;
-    parsedSubmission.postcode = sessionStorage.getItem("user_postcode") ?? undefined;
+    parsedSubmission.postcode =
+      sessionStorage.getItem("user_postcode") ?? undefined;
     setSubmission(parsedSubmission);
 
     // Start the processing pipeline
@@ -105,10 +118,10 @@ const ProcessingPage: React.FC = () => {
       // Step 1: Transcribe audio
       setCurrentStep("transcribing");
       setProgress(10);
-      const [transcript, mpData] = await Promise.all([transcribeAudio(
-        sub.recording as Blob,
-        sub.contentType
-      ), findEmail(sub.postcode)]);
+      const [transcript, mpData] = await Promise.all([
+        transcribeAudio(sub.recording as Blob, sub.contentType),
+        findEmail(sub.postcode),
+      ]);
       console.log("got transcript");
       sub.transcript = transcript;
       if (sub.postcode && sub.postcode.trim()) {
@@ -120,15 +133,14 @@ const ProcessingPage: React.FC = () => {
 
       // Step 2: Prepare submissions
       setCurrentStep("preparing");
-      const greenpaperBody = JSON.stringify({ transcript, name: sub.name })
-      const mpEmailBody = JSON.stringify({ transcript, name: sub.name, mp_name: sub.mpName, postcode: sub.postcode })
-      const [greenpaper, mpemail] = await Promise.all([
-        writeSummary(greenpaperBody, "greenpaper"),
-        writeSummary(mpEmailBody, "mpemail"),
-      ]);
-      console.log("greenpaper", greenpaper);
+      const mpEmailBody = JSON.stringify({
+        transcript,
+        name: sub.name,
+        mp_name: sub.mpName,
+        postcode: sub.postcode,
+      });
+      const mpemail = await writeSummary(mpEmailBody, "mpemail");
       console.log("mpemail", mpemail);
-      sub.greenpaper = greenpaper as Email;
       sub.mp = mpemail as Email;
       updateSubmission(sub);
 
@@ -153,7 +165,7 @@ const ProcessingPage: React.FC = () => {
           return;
         }
       }
-      const message =`An error occurred while processing your submission. Please try again. (Information for developers: ${err})`;
+      const message = `An error occurred while processing your submission. Please try again. (Information for developers: ${err})`;
       console.error(err);
       setError(message);
     }
