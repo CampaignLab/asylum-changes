@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Mic, FileText, Home } from 'lucide-react';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Mic, FileText, Home } from "lucide-react";
 
 const Header: React.FC = () => {
   return (
@@ -8,9 +8,9 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between">
         <div className="flex items-center mb-4 sm:mb-0">
           <Mic className="h-8 w-8 mr-2" />
-          <h1 className="text-xl font-bold">Speak Up on Pathways to Work</h1>
+          <h1 className="text-xl font-bold">Speak Up on Asylum Changes</h1>
         </div>
-        
+
         <nav className="flex space-x-4">
           <Link 
             to="/" 
@@ -31,6 +31,6 @@ const Header: React.FC = () => {
       </div>
     </header>
   );
-}
+};
 
-export default Header
+export default Header;

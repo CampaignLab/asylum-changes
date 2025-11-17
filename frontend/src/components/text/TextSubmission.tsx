@@ -1,24 +1,29 @@
-import React, { useState } from 'react';
-import { AlertCircle } from 'lucide-react';
-import Button from '../ui/Button';
+import React, { useState } from "react";
+import { AlertCircle } from "lucide-react";
+import Button from "../ui/Button";
 
 interface TextSubmissionProps {
   onSubmit: (text: string) => void;
 }
 
 const TextSubmission: React.FC<TextSubmissionProps> = ({ onSubmit }) => {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const [error, setError] = useState<string | null>(null);
   const maxWords = 3000;
 
   const countWords = (str: string) => {
-    return str.trim().split(/\s+/).filter(word => word.length > 0).length;
+    return str
+      .trim()
+      .split(/\s+/)
+      .filter((word) => word.length > 0).length;
   };
 
   const handleSubmit = () => {
     const wordCount = countWords(text);
     if (wordCount > maxWords) {
-      setError(`Please limit your submission to ${maxWords} words. Current count: ${wordCount}`);
+      setError(
+        `Please limit your submission to ${maxWords} words. Current count: ${wordCount}`
+      );
       return;
     }
     onSubmit(text);
@@ -29,7 +34,9 @@ const TextSubmission: React.FC<TextSubmissionProps> = ({ onSubmit }) => {
     setText(newText);
     const wordCount = countWords(newText);
     if (wordCount > maxWords) {
-      setError(`Word limit exceeded. Please remove ${wordCount - maxWords} words.`);
+      setError(
+        `Word limit exceeded. Please remove ${wordCount - maxWords} words.`
+      );
     } else {
       setError(null);
     }
@@ -45,10 +52,10 @@ const TextSubmission: React.FC<TextSubmissionProps> = ({ onSubmit }) => {
           onChange={handleChange}
         />
         <div className="mt-2 flex justify-between items-center text-sm text-slate-600">
-          <span>Word count: {countWords(text)} / {maxWords}</span>
-          {error && (
-            <span className="text-red-600">{error}</span>
-          )}
+          <span>
+            Word count: {countWords(text)} / {maxWords}
+          </span>
+          {error && <span className="text-red-600">{error}</span>}
         </div>
       </div>
 

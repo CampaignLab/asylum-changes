@@ -1,9 +1,9 @@
-import React from 'react';
-import { Loader2 } from 'lucide-react';
+import React from "react";
+import { Loader2 } from "lucide-react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'danger';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: "primary" | "secondary" | "outline" | "danger";
+  size?: "sm" | "md" | "lg";
   isLoading?: boolean;
   icon?: React.ReactNode;
   fullWidth?: boolean;
@@ -11,12 +11,12 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button: React.FC<ButtonProps> = ({
   children,
-  variant = 'primary',
-  size = 'md',
+  variant = "primary",
+  size = "md",
   isLoading = false,
   icon,
   fullWidth = false,
-  className = '',
+  className = "",
   disabled,
   ...props
 }) => {
@@ -28,16 +28,17 @@ const Button: React.FC<ButtonProps> = ({
     outline: "bg-transparent border border-slate-300 text-slate-700 hover:bg-slate-100 active:bg-slate-200",
     danger: "bg-red-600 text-white hover:bg-red-700 active:bg-red-800"
   };
-  
+
   const sizeStyles = {
     sm: "text-sm px-3 py-1.5",
     md: "text-base px-4 py-2",
-    lg: "text-lg px-6 py-3"
+    lg: "text-lg px-6 py-3",
   };
-  
-  const widthClass = fullWidth ? 'w-full' : '';
-  const disabledClass = disabled || isLoading ? 'opacity-70 cursor-not-allowed' : '';
-  
+
+  const widthClass = fullWidth ? "w-full" : "";
+  const disabledClass =
+    disabled || isLoading ? "opacity-70 cursor-not-allowed" : "";
+
   return (
     <button
       className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${widthClass} ${disabledClass} ${className}`}

@@ -1,19 +1,27 @@
-import React, {useEffect, useState} from 'react';
-import { useNavigate } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
-import { Mic, Upload, HelpCircle } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/Card';
-import Button from '../components/ui/Button';
-import AudioRecorder from '../components/audio/AudioRecorder';
-import AudioUploader from '../components/audio/AudioUploader';
-import TextSubmission from '../components/text/TextSubmission';
-import { AudioSubmission } from '../types';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+import { Mic, Upload, HelpCircle } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "../components/ui/Card";
+import Button from "../components/ui/Button";
+import AudioRecorder from "../components/audio/AudioRecorder";
+import AudioUploader from "../components/audio/AudioUploader";
+import TextSubmission from "../components/text/TextSubmission";
+import { AudioSubmission } from "../types";
 
 const HomePage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'record' | 'upload' | 'text'>('record');
+  const [activeTab, setActiveTab] = useState<"record" | "upload" | "text">(
+    "record"
+  );
   const [error, setError] = useState<string | null>(null);
-  const [name, setName] = useState('');
-  const [postcode, setPostcode] = useState('');
+  const [name, setName] = useState("");
+  const [postcode, setPostcode] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,7 +32,7 @@ const HomePage: React.FC = () => {
   const uploadToBackend = async (audioBlob: Blob, contentType: string) => {
     // Validate name before proceeding
     if (!name.trim()) {
-      setError('Please enter your name before submitting.');
+      setError("Please enter your name before submitting.");
       return;
     }
 
@@ -36,54 +44,65 @@ const HomePage: React.FC = () => {
       id: submissionId,
       contentType,
       createdAt: new Date(),
-      status: 'uploading'
+      status: "uploading",
     };
-    
-    sessionStorage.setItem(`submission_${submissionId}`, JSON.stringify(submission));
+
+    sessionStorage.setItem(
+      `submission_${submissionId}`,
+      JSON.stringify(submission)
+    );
     (window as any).submissionBlob = audioBlob;
 
     navigate(`/processing/${submissionId}`);
   };
-  
-const handleRecordingComplete = async (recording: Blob) => {
-  try {
-    // Upload the recording to the backend
-    await uploadToBackend(recording, recording.type || "audio/webm");
-  } catch (error) {
-    console.error('Error processing recording:', error);
-    setError('Failed to upload recording. Please try again.');
-  }
-};
 
-const extensionToContentType = (extension: string) => {
-  switch (extension.toLowerCase()) {
-    case "m4a": return "audio/mp4"; // m4a is a subset of mp4
-    case "mp3": return "audio/mpeg";
-    case "wav": return "audio/wav";
-    case "ogg": return "audio/ogg";
-    case "webm": return "audio/webm";
-    case "aac": return "audio/aac";
-    case "flac": return "audio/flac";
-    default: return "application/octet-stream"; // fallback for unknown types
-  }
-};
-  
+  const handleRecordingComplete = async (recording: Blob) => {
+    try {
+      // Upload the recording to the backend
+      await uploadToBackend(recording, recording.type || "audio/webm");
+    } catch (error) {
+      console.error("Error processing recording:", error);
+      setError("Failed to upload recording. Please try again.");
+    }
+  };
+
+  const extensionToContentType = (extension: string) => {
+    switch (extension.toLowerCase()) {
+      case "m4a":
+        return "audio/mp4"; // m4a is a subset of mp4
+      case "mp3":
+        return "audio/mpeg";
+      case "wav":
+        return "audio/wav";
+      case "ogg":
+        return "audio/ogg";
+      case "webm":
+        return "audio/webm";
+      case "aac":
+        return "audio/aac";
+      case "flac":
+        return "audio/flac";
+      default:
+        return "application/octet-stream"; // fallback for unknown types
+    }
+  };
+
   const handleFileUpload = async (file: File) => {
     try {
       const pieces = file.name.split(".");
       const extension = pieces[pieces.length - 1];
       const contentType = extensionToContentType(extension);
-      
+
       await uploadToBackend(file, contentType);
     } catch (error) {
-      console.error('Error processing file upload:', error);
-      setError('Failed to upload file. Please try again.');
+      console.error("Error processing file upload:", error);
+      setError("Failed to upload file. Please try again.");
     }
   };
 
   const handleTextSubmit = (text: string) => {
     // Handle text submission similar to audio
-    console.log('Text submitted:', text);
+    console.log("Text submitted:", text);
   };
 
   return (
@@ -94,10 +113,12 @@ const extensionToContentType = (extension: string) => {
           <div className="absolute inset-0 bg-gradient-to-r from-purple-900 to-purple-800 opacity-50"></div>
           <div className="relative max-w-3xl mx-auto">
             <h1 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
-              Have Your Say on the UK's Pathways to Work Green Paper
+              Have Your Say on the UK's Asylum and Immigration Changes
             </h1>
             <p className="text-xl md:text-2xl opacity-90 mb-8 leading-relaxed">
-              Your voice matters. The government's proposed changes to health and disability benefits could affect millions. Share your experience and help shape the future.
+              Your voice matters. The government's proposed changes to asylum
+              and immigration could affect millions. Share your experience and
+              help shape the future.
             </p>
           </div>
         </div>
@@ -107,12 +128,17 @@ const extensionToContentType = (extension: string) => {
       <Card>
         <CardHeader>
           <CardTitle>Information about you</CardTitle>
-          <CardDescription>We won't store your personal information.</CardDescription>
+          <CardDescription>
+            We won't store your personal information.
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
             <div className="grid grid-cols-1 gap-1">
-              <label htmlFor="name" className="block text-sm font-medium text-slate-700">
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-slate-700"
+              >
                 Your Name (required)
               </label>
               <input
@@ -125,10 +151,15 @@ const extensionToContentType = (extension: string) => {
             </div>
 
             <div className="grid grid-cols-1 gap-1">
-              <label htmlFor="postcode" className="block text-sm font-medium text-slate-700">
+              <label
+                htmlFor="postcode"
+                className="block text-sm font-medium text-slate-700"
+              >
                 Your Postcode (optional)
               </label>
-              <div className="text-xs">Postcode is needed to send an email to your MP.</div>
+              <div className="text-xs">
+                Postcode is needed to send an email to your MP.
+              </div>
               <input
                 type="text"
                 id="postcode"
@@ -141,60 +172,61 @@ const extensionToContentType = (extension: string) => {
           </div>
         </CardContent>
       </Card>
-      { name.trim().length > 0 && (
-      <Card>
-        <CardHeader>
-          <CardTitle>How would you like to contribute?</CardTitle>
-          <CardDescription>Choose the method that works best for you</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-wrap gap-4 mb-6">
-            <Button 
-              variant={activeTab === 'record' ? 'primary' : 'outline'}
-              onClick={() => setActiveTab('record')}
-              icon={<Mic className="h-5 w-5" />}
-            >
-              Record Directly
-            </Button>
-            <Button 
-              variant={activeTab === 'upload' ? 'primary' : 'outline'}
-              onClick={() => setActiveTab('upload')}
-              icon={<Upload className="h-5 w-5" />}
-            >
-              Upload Audio File
-            </Button>
-            {/* <Button 
+      {name.trim().length > 0 && (
+        <Card>
+          <CardHeader>
+            <CardTitle>How would you like to contribute?</CardTitle>
+            <CardDescription>
+              Choose the method that works best for you
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-wrap gap-4 mb-6">
+              <Button
+                variant={activeTab === "record" ? "primary" : "outline"}
+                onClick={() => setActiveTab("record")}
+                icon={<Mic className="h-5 w-5" />}
+              >
+                Record Directly
+              </Button>
+              <Button
+                variant={activeTab === "upload" ? "primary" : "outline"}
+                onClick={() => setActiveTab("upload")}
+                icon={<Upload className="h-5 w-5" />}
+              >
+                Upload Audio File
+              </Button>
+              {/* <Button 
               variant={activeTab === 'text' ? 'primary' : 'outline'}
               onClick={() => setActiveTab('text')}
               icon={<HelpCircle className="h-5 w-5" />}
             >
               Text Submission
             </Button> */}
-          </div>
-          
-          {activeTab === 'record' && (
-            <AudioRecorder onRecordingComplete={handleRecordingComplete} />
-          )}
-          
-          {activeTab === 'upload' && (
-            <AudioUploader onFileUpload={handleFileUpload} />
-          )}
-          
-          {activeTab === 'text' && (
-            <TextSubmission onSubmit={handleTextSubmit} />
-          )}
-        </CardContent>
-      </Card>
+            </div>
 
+            {activeTab === "record" && (
+              <AudioRecorder onRecordingComplete={handleRecordingComplete} />
+            )}
+
+            {activeTab === "upload" && (
+              <AudioUploader onFileUpload={handleFileUpload} />
+            )}
+
+            {activeTab === "text" && (
+              <TextSubmission onSubmit={handleTextSubmit} />
+            )}
+          </CardContent>
+        </Card>
       )}
 
-      { error && (
-          <Card className="border-red-500">
-            <CardHeader>
-              <CardTitle className="text-red-500">Error</CardTitle>
-              <CardDescription>{error}</CardDescription>
-            </CardHeader>
-          </Card>
+      {error && (
+        <Card className="border-red-500">
+          <CardHeader>
+            <CardTitle className="text-red-500">Error</CardTitle>
+            <CardDescription>{error}</CardDescription>
+          </CardHeader>
+        </Card>
       )}
 
       {/* Tips Section */}
