@@ -17,7 +17,9 @@ const AboutPage: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto space-y-8">
       <div className="space-y-4">
-        <h1 className="text-3xl font-bold text-slate-800">About the Green Paper</h1>
+        <h1 className="text-3xl font-bold text-slate-800">
+          About the Green Paper
+        </h1>
         <p className="text-lg text-slate-600 leading-relaxed">
           The UK government has announced significant changes to the asylum and
           immigration system. This page explains what this means and why your
@@ -29,7 +31,7 @@ const AboutPage: React.FC = () => {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center">
-              <FileText className="h-5 w-5 mr-2 text-purple-600" />
+              <FileText className="h-5 w-5 mr-2 text-blue-600" />
               What is a Green Paper?
             </CardTitle>
           </CardHeader>
@@ -99,7 +101,7 @@ const AboutPage: React.FC = () => {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center">
-            <Shield className="h-5 w-5 mr-2 text-purple-600" />
+            <Shield className="h-5 w-5 mr-2 text-blue-600" />
             Privacy and Trust Concerns
           </CardTitle>
         </CardHeader>
@@ -134,7 +136,7 @@ const AboutPage: React.FC = () => {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center">
-            <Database className="h-5 w-5 mr-2 text-purple-600" />
+            <Database className="h-5 w-5 mr-2 text-blue-600" />
             What Data Do We Collect?
           </CardTitle>
         </CardHeader>

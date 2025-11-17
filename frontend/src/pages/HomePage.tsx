@@ -108,9 +108,9 @@ const HomePage: React.FC = () => {
   return (
     <div className="space-y-12">
       {/* Hero Section */}
-      <section className="bg-purple-900 text-white rounded-xl overflow-hidden shadow-xl animate-fadeIn">
+      <section className="bg-blue-900 text-white rounded-xl overflow-hidden shadow-xl animate-fadeIn">
         <div className="relative px-6 py-12 sm:px-12 sm:py-16">
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-900 to-purple-800 opacity-50"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-blue-800 opacity-50"></div>
           <div className="relative max-w-3xl mx-auto">
             <h1 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
               Have Your Say on the UK's Asylum and Immigration Changes
@@ -230,13 +230,15 @@ const HomePage: React.FC = () => {
       )}
 
       {/* Tips Section */}
-      <div className="bg-purple-50 border border-purple-200 rounded-lg p-4 flex gap-4">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex gap-4">
         <div className="shrink-0">
-          <HelpCircle className="h-6 w-6 text-purple-500" />
+          <HelpCircle className="h-6 w-6 text-blue-500" />
         </div>
         <div>
-          <h3 className="font-medium text-purple-800 mb-1">Tips for a great submission</h3>
-          <ul className="list-disc list-inside text-purple-700 space-y-1 text-sm">
+          <h3 className="font-medium text-blue-800 mb-1">
+            Tips for a great submission
+          </h3>
+          <ul className="list-disc list-inside text-blue-700 space-y-1 text-sm">
             <li>Speak clearly and at a normal pace</li>
             <li>Share your personal experiences with the benefits system</li>
             <li>Explain how the proposed changes would affect you</li>

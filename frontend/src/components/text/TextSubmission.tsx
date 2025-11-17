@@ -46,7 +46,7 @@ const TextSubmission: React.FC<TextSubmissionProps> = ({ onSubmit }) => {
     <div className="space-y-4">
       <div className="bg-white border border-slate-200 rounded-lg p-4">
         <textarea
-          className="w-full h-64 p-4 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
+          className="w-full h-64 p-4 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
           placeholder="Type your submission here..."
           value={text}
           onChange={handleChange}
