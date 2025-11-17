@@ -6,10 +6,12 @@ import json
 # Load environment variables from .env file
 load_dotenv()
 
-PROFILE="green_pathways"
+PROFILE = "green_pathways"
 
 # Deploy Chalice app
-deploy_result = subprocess.run(["chalice", "deploy", "--profile", PROFILE], capture_output=True, text=True)
+deploy_result = subprocess.run(
+    ["chalice", "deploy", "--profile", PROFILE], capture_output=True, text=True
+)
 
 # Check the deploy result
 if deploy_result.returncode == 0:
@@ -29,12 +31,12 @@ command = [
     "aws",
     "lambda",
     "update-function-configuration",
-    "--profile", 
+    "--profile",
     PROFILE,
     "--function-name",
-    "green-pathways-backend-dev",
+    "asylum-changes-backend-dev",
     "--environment",
-    json.dumps(env_vars)
+    json.dumps(env_vars),
 ]
 
 # Run the command

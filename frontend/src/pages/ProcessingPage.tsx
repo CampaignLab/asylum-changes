@@ -230,7 +230,7 @@ const ProcessingPage: React.FC = () => {
               />
 
               <ProcessingStepItem
-                title="Preparing submissions"
+                title="Preparing submission"
                 status={getStepStatus("preparing", currentStep)}
                 error={error}
                 icon={<Loader2 className="h-6 w-6 animate-spin" />}

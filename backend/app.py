@@ -12,7 +12,7 @@ from jinja2 import Template
 import json
 import re
 
-load_dotenv()
+load_dotenv(override=True)
 
 AWS_REGION = os.getenv("AWS_REGION", "eu-west-2")
 if not os.getenv("OPENAI_API_KEY"):
@@ -20,7 +20,7 @@ if not os.getenv("OPENAI_API_KEY"):
 if not os.getenv("ANTHROPIC_API_KEY"):
     raise Exception("ANTHROPIC_API_KEY not set in environment")
 
-app = Chalice(app_name="green-pathways-backend")
+app = Chalice(app_name="asylum-changes-backend")
 app.log.setLevel(logging.INFO)
 
 # Configure handler with timestamp format for local development
@@ -31,6 +31,7 @@ handler.setFormatter(formatter)
 # app.log.handlers.clear()
 # app.log.addHandler(handler)
 
+app.log.info(f"Anthropic key: {os.getenv('ANTHROPIC_API_KEY')}")
 openai_client = OpenAI()
 anthropic_client = anthropic.Anthropic()
 os.makedirs("/tmp/audio", exist_ok=True)
@@ -247,7 +248,7 @@ def apply_prompt_to_transcript(template):
         app.log.info(f"{template_id}: Template applied")
 
         response = anthropic_client.messages.create(
-            model="claude-sonnet-4-5-20250929",
+            model="claude-sonnet-4-5",
             max_tokens=8192,
             temperature=0.6,
             messages=[
