@@ -27,11 +27,7 @@ app.log.setLevel(logging.INFO)
 handler = logging.StreamHandler()
 formatter = logging.Formatter("%(asctime)s %(message)s", datefmt="%H:%M:%S")
 handler.setFormatter(formatter)
-# Clear existing handlers and add our formatted handler
-# app.log.handlers.clear()
-# app.log.addHandler(handler)
 
-app.log.info(f"Anthropic key: {os.getenv('ANTHROPIC_API_KEY')}")
 openai_client = OpenAI()
 anthropic_client = anthropic.Anthropic()
 os.makedirs("/tmp/audio", exist_ok=True)
@@ -79,7 +75,9 @@ def email():
         postcode = postcode.strip().upper().replace(" ", "")
 
         # Get parliamentary constituency from postcodes.io
-        response = requests.get(f"https://api.postcodes.io/postcodes/{postcode}")
+        url = f"https://api.postcodes.io/postcodes/{postcode}"
+        app.log.info(f"Fetching constituency data from {url}")
+        response = requests.get(url)
         if response.status_code != 200:
             return error_response(
                 error_message=response.json().get(

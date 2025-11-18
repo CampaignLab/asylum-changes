@@ -154,7 +154,7 @@ const HomePage: React.FC = () => {
                 htmlFor="postcode"
                 className="block text-sm font-medium text-slate-700"
               >
-                Your Postcode (optional)
+                Your Postcode
               </label>
               <div className="text-xs">
                 Postcode is needed to send an email to your MP.
