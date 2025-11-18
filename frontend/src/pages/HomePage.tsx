@@ -105,16 +105,16 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-4">
       {/* Hero Section */}
       <section className="bg-blue-900 text-white rounded-xl overflow-hidden shadow-xl animate-fadeIn">
-        <div className="relative px-6 py-12 sm:px-12 sm:py-16">
+        <div className="relative p-6">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-blue-800 opacity-50"></div>
           <div className="relative max-w-3xl mx-auto">
             <h1 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
               Have Your Say on the UK's Asylum and Immigration Changes
             </h1>
-            <p className="text-xl md:text-2xl opacity-90 mb-8 leading-relaxed">
+            <p className="text-xl md:text-2xl opacity-90 leading-relaxed">
               Your voice matters. The government's proposed changes to asylum
               and immigration could affect millions. Share your experience and
               help shape the future.
@@ -181,7 +181,7 @@ const HomePage: React.FC = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-3 mb-6">
-              <label className="flex items-center gap-3 p-4 border-2 border-slate-300 rounded-lg cursor-pointer hover:bg-slate-50 transition-colors has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50">
+              <label className="flex items-center gap-3 p-2 border-2 border-slate-300 rounded-lg cursor-pointer hover:bg-slate-50 transition-colors has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50">
                 <input
                   type="radio"
                   name="submission-method"
@@ -196,7 +196,7 @@ const HomePage: React.FC = () => {
                 </span>
               </label>
 
-              <label className="flex items-center gap-3 p-4 border-2 border-slate-300 rounded-lg cursor-pointer hover:bg-slate-50 transition-colors has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50">
+              <label className="flex items-center gap-3 p-2 border-2 border-slate-300 rounded-lg cursor-pointer hover:bg-slate-50 transition-colors has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50">
                 <input
                   type="radio"
                   name="submission-method"

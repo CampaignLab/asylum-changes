@@ -1,20 +1,22 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Mic, MicOff, Square, Trash, Pause, Play } from 'lucide-react';
-import Button from '../ui/Button';
-import AudioVisualizer from './AudioVisualizer';
-import { AudioRecorderProps } from '../../types';
+import React, { useState, useRef, useEffect } from "react";
+import { Mic, MicOff, Square, Trash, Pause, Play } from "lucide-react";
+import Button from "../ui/Button";
+import AudioVisualizer from "./AudioVisualizer";
+import { AudioRecorderProps } from "../../types";
 
 /** Pick the first MIME type the current browser can actually record. */
 const pickMimeType = () => {
   const candidates = [
-    'audio/mp4',   // iOS Safari / iOS Chrome
-    'audio/webm',  // Desktop Chrome / Edge
-    'audio/mpeg',  // Very old fallback
+    "audio/mp4", // iOS Safari / iOS Chrome
+    "audio/webm", // Desktop Chrome / Edge
+    "audio/mpeg", // Very old fallback
   ];
-  return candidates.find(MediaRecorder.isTypeSupported) || '';
+  return candidates.find(MediaRecorder.isTypeSupported) || "";
 };
 
-const AudioRecorder: React.FC<AudioRecorderProps> = ({ onRecordingComplete }) => {
+const AudioRecorder: React.FC<AudioRecorderProps> = ({
+  onRecordingComplete,
+}) => {
   const [isRecording, setIsRecording] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [recordingTime, setRecordingTime] = useState(0);
@@ -27,7 +29,7 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onRecordingComplete }) =>
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const timerRef = useRef<number | null>(null);
-  const mimeTypeRef = useRef<string>('');
+  const mimeTypeRef = useRef<string>("");
 
   /* --------------------------------------------------------------------- */
   /* Permissions & cleanup                                                */
@@ -35,12 +37,16 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onRecordingComplete }) =>
   useEffect(() => {
     const getPermission = async () => {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        const stream = await navigator.mediaDevices.getUserMedia({
+          audio: true,
+        });
         streamRef.current = stream;
         setHasPermission(true);
       } catch {
         setHasPermission(false);
-        setError('Microphone access was denied. Please grant permission to continue.');
+        setError(
+          "Microphone access was denied. Please grant permission to continue."
+        );
       }
     };
 
@@ -48,7 +54,7 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onRecordingComplete }) =>
 
     return () => {
       if (streamRef.current) {
-        streamRef.current.getTracks().forEach(track => track.stop());
+        streamRef.current.getTracks().forEach((track) => track.stop());
       }
 
       if (timerRef.current) {
@@ -63,7 +69,7 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onRecordingComplete }) =>
 
   const startRecording = async () => {
     if (!hasPermission) {
-      setError('Microphone permission is required to record audio.');
+      setError("Microphone permission is required to record audio.");
       return;
     }
 
@@ -76,7 +82,7 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onRecordingComplete }) =>
 
           // Restart timer
           timerRef.current = window.setInterval(() => {
-            setRecordingTime(prev => prev + 1);
+            setRecordingTime((prev) => prev + 1);
           }, 1000);
         }
         return;
@@ -91,7 +97,9 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onRecordingComplete }) =>
 
       // Get fresh stream if needed
       if (!streamRef.current) {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        const stream = await navigator.mediaDevices.getUserMedia({
+          audio: true,
+        });
         streamRef.current = stream;
       }
 
@@ -99,8 +107,8 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onRecordingComplete }) =>
       const mimeType = pickMimeType();
       mimeTypeRef.current = mimeType;
       const mediaRecorder = mimeType
-          ? new MediaRecorder(streamRef.current!, { mimeType })
-          : new MediaRecorder(streamRef.current!);
+        ? new MediaRecorder(streamRef.current!, { mimeType })
+        : new MediaRecorder(streamRef.current!);
       mediaRecorderRef.current = mediaRecorder;
 
       const chunks: Blob[] = [];
@@ -111,8 +119,9 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onRecordingComplete }) =>
       };
 
       mediaRecorder.onstop = () => {
-        const blob = new Blob(chunks, {              // use the real type
-          type: mimeTypeRef.current || chunks[0]?.type || ''
+        const blob = new Blob(chunks, {
+          // use the real type
+          type: mimeTypeRef.current || chunks[0]?.type || "",
         });
         setRecordingBlob(blob);
         setHasRecording(true);
@@ -128,12 +137,11 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onRecordingComplete }) =>
 
       // Start timer
       timerRef.current = window.setInterval(() => {
-        setRecordingTime(prev => prev + 1);
+        setRecordingTime((prev) => prev + 1);
       }, 1000);
-
     } catch (err) {
-      console.error('Error starting recording:', err);
-      setError('Failed to start recording. Please check your microphone.');
+      console.error("Error starting recording:", err);
+      setError("Failed to start recording. Please check your microphone.");
     }
   };
 
@@ -183,7 +191,9 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onRecordingComplete }) =>
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    return `${mins.toString().padStart(2, "0")}:${secs
+      .toString()
+      .padStart(2, "0")}`;
   };
 
   if (hasPermission === false) {
@@ -192,9 +202,12 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onRecordingComplete }) =>
         <div className="flex">
           <MicOff className="h-5 w-5 text-red-500 mr-2" />
           <div>
-            <h3 className="text-red-800 font-medium">Microphone Permission Required</h3>
+            <h3 className="text-red-800 font-medium">
+              Microphone Permission Required
+            </h3>
             <p className="text-red-700 mt-1">
-              Please enable microphone access in your browser settings to record audio.
+              Please enable microphone access in your browser settings to record
+              audio.
             </p>
           </div>
         </div>
@@ -214,14 +227,24 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onRecordingComplete }) =>
         <div className="flex flex-col space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-medium text-slate-800">
-              {isRecording ? 'Recording in progress...' : hasRecording ? 'Recording complete' : 'Record your message'}
+              {isRecording
+                ? "Recording in progress..."
+                : hasRecording
+                ? "Recording complete"
+                : "Record your message"}
             </h3>
 
             <div className="flex items-center">
               {(isRecording || isPaused) && (
                 <div className="flex items-center mr-3">
-                  <div className={`h-2 w-2 rounded-full ${isPaused ? 'bg-amber-500' : 'bg-red-500 animate-pulse'} mr-2`}></div>
-                  <span className="text-slate-600 font-mono">{formatTime(recordingTime)}</span>
+                  <div
+                    className={`h-2 w-2 rounded-full ${
+                      isPaused ? "bg-amber-500" : "bg-red-500 animate-pulse"
+                    } mr-2`}
+                  ></div>
+                  <span className="text-slate-600 font-mono">
+                    {formatTime(recordingTime)}
+                  </span>
                 </div>
               )}
             </div>
@@ -232,7 +255,7 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onRecordingComplete }) =>
             isRecording={isRecording && !isPaused}
           />
 
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 justify-center md:justify-start">
             {!isRecording && !hasRecording && (
               <Button
                 onClick={startRecording}
@@ -285,11 +308,19 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onRecordingComplete }) =>
 
             {hasRecording && (
               <>
-                <Button onClick={clearRecording} variant="outline" icon={<Trash className="h-5 w-5" />}>
+                <Button
+                  onClick={clearRecording}
+                  variant="outline"
+                  icon={<Trash className="h-5 w-5" />}
+                >
                   Clear Recording
                 </Button>
 
-                <Button onClick={startRecording} variant="outline" icon={<Mic className="h-5 w-5" />}>
+                <Button
+                  onClick={startRecording}
+                  variant="outline"
+                  icon={<Mic className="h-5 w-5" />}
+                >
                   Record Again
                 </Button>
 
@@ -302,7 +333,9 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onRecordingComplete }) =>
 
           {audioURL && (
             <div className="mt-2">
-              <p className="text-sm text-slate-600 mb-2">Preview your recording:</p>
+              <p className="text-sm text-slate-600 mb-2">
+                Preview your recording:
+              </p>
               <audio controls src={audioURL} className="w-full" />
             </div>
           )}
