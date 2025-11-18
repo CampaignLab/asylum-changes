@@ -9,7 +9,6 @@ import {
   CardTitle,
   CardDescription,
 } from "../components/ui/Card";
-import Button from "../components/ui/Button";
 import AudioRecorder from "../components/audio/AudioRecorder";
 import AudioUploader from "../components/audio/AudioUploader";
 import TextSubmission from "../components/text/TextSubmission";
@@ -181,28 +180,36 @@ const HomePage: React.FC = () => {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="flex flex-wrap gap-4 mb-6">
-              <Button
-                variant={activeTab === "record" ? "primary" : "outline"}
-                onClick={() => setActiveTab("record")}
-                icon={<Mic className="h-5 w-5" />}
-              >
-                Record Directly
-              </Button>
-              <Button
-                variant={activeTab === "upload" ? "primary" : "outline"}
-                onClick={() => setActiveTab("upload")}
-                icon={<Upload className="h-5 w-5" />}
-              >
-                Upload Audio File
-              </Button>
-              {/* <Button 
-              variant={activeTab === 'text' ? 'primary' : 'outline'}
-              onClick={() => setActiveTab('text')}
-              icon={<HelpCircle className="h-5 w-5" />}
-            >
-              Text Submission
-            </Button> */}
+            <div className="space-y-3 mb-6">
+              <label className="flex items-center gap-3 p-4 border-2 border-slate-300 rounded-lg cursor-pointer hover:bg-slate-50 transition-colors has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50">
+                <input
+                  type="radio"
+                  name="submission-method"
+                  value="record"
+                  checked={activeTab === "record"}
+                  onChange={() => setActiveTab("record")}
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500"
+                />
+                <Mic className="h-5 w-5 text-slate-600" />
+                <span className="font-medium text-slate-700">
+                  Record Directly
+                </span>
+              </label>
+
+              <label className="flex items-center gap-3 p-4 border-2 border-slate-300 rounded-lg cursor-pointer hover:bg-slate-50 transition-colors has-[:checked]:border-blue-500 has-[:checked]:bg-blue-50">
+                <input
+                  type="radio"
+                  name="submission-method"
+                  value="upload"
+                  checked={activeTab === "upload"}
+                  onChange={() => setActiveTab("upload")}
+                  className="h-4 w-4 text-blue-600 focus:ring-blue-500"
+                />
+                <Upload className="h-5 w-5 text-slate-600" />
+                <span className="font-medium text-slate-700">
+                  Upload Audio File
+                </span>
+              </label>
             </div>
 
             {activeTab === "record" && (
@@ -229,29 +236,28 @@ const HomePage: React.FC = () => {
         </Card>
       )}
 
-      {/* Tips Section */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex gap-4">
-        <div className="shrink-0">
-          <HelpCircle className="h-6 w-6 text-blue-500" />
+      {name.trim().length > 0 && (
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex gap-4">
+          <div className="shrink-0">
+            <HelpCircle className="h-6 w-6 text-blue-500" />
+          </div>
+          <div>
+            <h3 className="font-medium text-blue-800 mb-1">
+              Tips for a great submission
+            </h3>
+            <ul className="list-disc list-inside text-blue-700 space-y-1 text-sm">
+              <li>Speak clearly and at a normal pace</li>
+              <li>
+                Share your personal experiences with the asylum and immigration
+                system
+              </li>
+              <li>Explain how the proposed changes would affect you</li>
+              <li>Mention any alternatives that you think would work better</li>
+              <li>Recordings cannot be longer than 5 minutes</li>
+            </ul>
+          </div>
         </div>
-        <div>
-          <h3 className="font-medium text-blue-800 mb-1">
-            Tips for a great submission
-          </h3>
-          <ul className="list-disc list-inside text-blue-700 space-y-1 text-sm">
-            <li>Speak clearly and at a normal pace</li>
-            <li>Share your personal experiences with the benefits system</li>
-            <li>Explain how the proposed changes would affect you</li>
-            <li>Mention any alternatives that you think would work better</li>
-            <li>Recordings cannot be longer than 5 minutes</li>
-          </ul>
-        </div>
-      </div>
-
-      {/* Note: The following sections can be manually modified in the code */}
-      {/* Important Questions to Consider: Lines 280-310 */}
-      {/* How It Works: Lines 313-359 */}
-      {/* Why Speaking Up Matters: Lines 362-386 */}
+      )}
     </div>
   );
 };
