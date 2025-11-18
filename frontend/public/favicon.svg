@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="48" fill="#1e40af" stroke="#1e3a8a" stroke-width="2"/>
+  
+  <!-- Microphone icon (Lucide Mic style) in white -->
+  <!-- Microphone capsule -->
+  <rect x="42" y="25" width="16" height="28" rx="8" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Microphone stand bracket -->
+  <path d="M 32 53 Q 32 65, 50 65 Q 68 65, 68 53" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Microphone stand base -->
+  <line x1="50" y1="65" x2="50" y2="75" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+  <line x1="42" y1="75" x2="58" y2="75" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+</svg>
+

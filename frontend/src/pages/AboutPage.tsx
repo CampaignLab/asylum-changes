@@ -172,8 +172,7 @@ const AboutPage: React.FC = () => {
             <li className="flex items-start">
               <span className="font-medium mr-2">1.</span>
               <p>
-                A unique ID for each AI interaction to track total consultation
-                responses
+                A unique ID for each AI interaction to track total responses
               </p>
             </li>
             <li className="flex items-start">
@@ -192,8 +191,8 @@ const AboutPage: React.FC = () => {
           </ul>
           <p className="text-slate-600 mt-4">
             While we won't share individual data, we hope to share aggregate
-            insights about our collective impact on the consultation process.
-            Together, we can make a difference.
+            insights about our collective impact. Together, we can make a
+            difference.
           </p>
         </CardContent>
       </Card>

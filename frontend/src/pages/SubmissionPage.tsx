@@ -1,12 +1,6 @@
-import React, {useState, useEffect, useMemo} from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
-import {
-  Copy,
-  CheckCheck,
-  Send,
-  FileText,
-  AlertCircle,
-} from "lucide-react";
+import { Copy, CheckCheck, Send, FileText, AlertCircle } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -74,34 +68,36 @@ const SubmissionPage: React.FC = () => {
   }
 
   return (
-    <div className="max-w-3xl mx-auto space-y-8">
+    <div className="max-w-3xl mx-auto space-y-4">
       <div className="space-y-4">
         <h1 className="text-3xl font-bold text-slate-800">Your Response</h1>
         <p className="text-lg text-slate-600">
           We've processed your recording and formatted it into a response
-          suitable for the official consultation.
+          suitable to send to your MP.
         </p>
       </div>
 
-      { submission.mp?.body && submission.mp.subject && (
-      <SummaryCard
-        title="Your Email to your MP"
-        description="This is an email you can send to your MP"
-        summary={submission.mp.body}
-        buttonText="Write your MP"
-        emailSubject={submission.mp.subject}
-        emailUrl={submission.mpEmailAddress}
-      />)}
+      {submission.mp?.body && submission.mp.subject && (
+        <SummaryCard
+          title="Your Email to your MP"
+          description="This is an email you can send to your MP"
+          summary={submission.mp.body}
+          buttonText="Write your MP"
+          emailSubject={submission.mp.subject}
+          emailUrl={submission.mpEmailAddress}
+        />
+      )}
 
-      { submission.greenpaper?.body && submission.greenpaper.subject && (
-      <SummaryCard
-        title="Your Greenpaper Response"
-        description="This is your response formatted for submission to the government consultation"
-        summary={submission.greenpaper.body}
-        buttonText="Email Response to the Consultation"
-        emailUrl="consultation.pathwaystowork@dwp.gov.uk"
-        emailSubject={submission.greenpaper.subject}
-      />)}
+      {submission.greenpaper?.body && submission.greenpaper.subject && (
+        <SummaryCard
+          title="Your Greenpaper Response"
+          description="This is your response formatted for submission to the government consultation"
+          summary={submission.greenpaper.body}
+          buttonText="Email Response to the Consultation"
+          emailUrl="consultation.pathwaystowork@dwp.gov.uk"
+          emailSubject={submission.greenpaper.subject}
+        />
+      )}
 
       <Card>
         <CardHeader>
@@ -159,15 +155,20 @@ const SummaryCard = ({
 }) => {
   const [copied, setCopied] = useState(false);
 
-  const copyButtonVariant = useMemo(() => copied ? 'outline' : 'primary', [copied]);
-  const emailButtonVariant = useMemo(() => copied ? 'primary' : 'outline', [copied]);
+  const copyButtonVariant = useMemo(
+    () => (copied ? "outline" : "primary"),
+    [copied]
+  );
+  const emailButtonVariant = useMemo(
+    () => (copied ? "primary" : "outline"),
+    [copied]
+  );
 
   const mailto = `mailto:${emailUrl}?subject=${emailSubject}`;
 
   if (!summary) {
     return <div />;
   }
-
 
   const copyToClipboard = async () => {
     try {
@@ -194,8 +195,9 @@ const SummaryCard = ({
           {summary}
         </div>
         <div className="text-sm text-slate-600 mt-4">
-          Click the button below to copy the summary to your clipboard.
-          Then click the next button to create an email, and paste the message into the email, and send it!
+          Click the button below to copy the summary to your clipboard. Then
+          click the next button to create an email, and paste the message into
+          the email, and send it!
         </div>
       </CardContent>
       <CardFooter className="flex flex-wrap gap-3">
