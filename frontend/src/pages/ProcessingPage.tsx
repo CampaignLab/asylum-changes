@@ -201,8 +201,8 @@ const ProcessingPage: React.FC = () => {
           Processing Your Submission
         </h1>
         <p className="text-lg text-slate-600">
-          We're turning your audio recording into structured responses. This may
-          take a moment.
+          We're turning your audio recording into a structured response. This
+          may take a moment.
         </p>
       </div>
 
