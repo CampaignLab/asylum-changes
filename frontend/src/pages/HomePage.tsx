@@ -237,25 +237,25 @@ const HomePage: React.FC = () => {
       )}
 
       {name.trim().length > 0 && (
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex gap-4">
-          <div className="shrink-0">
-            <HelpCircle className="h-6 w-6 text-blue-500" />
-          </div>
-          <div>
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex flex-col gap-2">
+          <div className="flex gap-1 items-center">
+            <div className="shrink-0">
+              <HelpCircle className="h-6 w-6 text-blue-500" />
+            </div>
             <h3 className="font-medium text-blue-800 mb-1">
               Tips for a great submission
             </h3>
-            <ul className="list-disc list-inside text-blue-700 space-y-1 text-sm">
-              <li>Speak clearly and at a normal pace</li>
-              <li>
-                Share your personal experiences with the asylum and immigration
-                system
-              </li>
-              <li>Explain how the proposed changes would affect you</li>
-              <li>Mention any alternatives that you think would work better</li>
-              <li>Recordings cannot be longer than 5 minutes</li>
-            </ul>
           </div>
+          <ul className="list-disc list-outside text-blue-700 space-y-1 text-sm pl-7">
+            <li>Speak clearly and at a normal pace</li>
+            <li>
+              Share your personal experiences with the asylum and immigration
+              system
+            </li>
+            <li>Explain how the proposed changes would affect you</li>
+            <li>Mention any alternatives that you think would work better</li>
+            <li>Recordings cannot be longer than 5 minutes</li>
+          </ul>
         </div>
       )}
     </div>
