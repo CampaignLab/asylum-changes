@@ -54,6 +54,11 @@ Please only deploy code that is merged to the `main` branch.
 
 ## Deploying
 
+> Chalice writes account-specific metadata to `backend/.chalice/deployed/`.
+> If you previously deployed with a different AWS account or the Lambda was
+> deleted, remove that directory before running `deploy.py` so Chalice will
+> recreate the resources instead of attempting to reuse stale ARNs.
+
 You will need a `frontend/.env.production.local` file with the `VITE_BACKEND_URL` variable set to the output of `chalice url`, which you can run after the `deploy.py` command below.
 
 ```bash

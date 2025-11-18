@@ -3,48 +3,51 @@ from dotenv import load_dotenv
 import subprocess
 import json
 
-# Load environment variables from .env file
-load_dotenv()
+try:
+    # Load environment variables from .env file
+    load_dotenv(override=True)
 
-PROFILE = "green_pathways"
+    PROFILE = "green_pathways"
 
-# Deploy Chalice app
-deploy_result = subprocess.run(
-    ["chalice", "deploy", "--profile", PROFILE], capture_output=True, text=True
-)
+    # Deploy Chalice app
+    deploy_result = subprocess.run(
+        ["chalice", "deploy", "--profile", PROFILE], capture_output=True, text=True
+    )
 
-# Check the deploy result
-if deploy_result.returncode == 0:
-    print("Successfully deployed Chalice app.")
-else:
-    print("Failed to deploy Chalice app.")
-    print(deploy_result.stderr)
+    # Check the deploy result
+    if deploy_result.returncode == 0:
+        print("Successfully deployed Chalice app.")
+    else:
+        print("Failed to deploy Chalice app.")
+        print(deploy_result.stderr)
 
-env_vars = {"Variables": {}}
-env_var_names = ["OPENAI_API_KEY", "ANTHROPIC_API_KEY"]
-for var_name in env_var_names:
-    env_vars["Variables"][var_name] = os.getenv(var_name)
-env_vars["Variables"]["BACKUP"] = "S3"
+    env_vars = {"Variables": {}}
+    env_var_names = ["OPENAI_API_KEY", "ANTHROPIC_API_KEY"]
+    for var_name in env_var_names:
+        env_vars["Variables"][var_name] = os.getenv(var_name)
+    env_vars["Variables"]["BACKUP"] = "S3"
 
-# Define the AWS CLI command to set environment variables
-command = [
-    "aws",
-    "lambda",
-    "update-function-configuration",
-    "--profile",
-    PROFILE,
-    "--function-name",
-    "asylum-changes-backend-dev",
-    "--environment",
-    json.dumps(env_vars),
-]
+    # Define the AWS CLI command to set environment variables
+    command = [
+        "aws",
+        "lambda",
+        "update-function-configuration",
+        "--profile",
+        PROFILE,
+        "--function-name",
+        "asylum-changes-backend-dev",
+        "--environment",
+        json.dumps(env_vars),
+    ]
 
-# Run the command
-result = subprocess.run(command, capture_output=True, text=True)
+    # Run the command
+    result = subprocess.run(command, capture_output=True, text=True)
 
-# Check the result
-if result.returncode == 0:
-    print("Successfully updated environment variables.")
-else:
-    print("Failed to update environment variables.")
-    print(result.stderr)
+    # Check the result
+    if result.returncode == 0:
+        print("Successfully updated environment variables.")
+    else:
+        print("Failed to update environment variables.")
+        print(result.stderr)
+except Exception as e:
+    print(f"Error: {e}")

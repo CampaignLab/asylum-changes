@@ -5,6 +5,9 @@ __pycache__
 .venv/
 deployments/
 
+backend/.chalice/deployed/
+backend/.chalice/deployments/
+
 *.m4a
 
 .idea/
