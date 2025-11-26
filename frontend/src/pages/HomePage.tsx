@@ -139,8 +139,8 @@ const HomePage: React.FC = () => {
               <div className="flex items-center justify-center w-12 h-12 bg-blue-600 text-white rounded-full mx-auto mb-1 md:mb-4 text-xl font-bold">
                 1
               </div>
-              <h3 className="font-semibold text-lg text-slate-800 mb-2">
-                Record Your Voice Note
+              <h3 className="font-semibold text-lg text-slate-800 mb-2 text-center">
+                Record
               </h3>
               <p className="text-slate-600">
                 Share your personal experience with the asylum system in your
@@ -153,8 +153,8 @@ const HomePage: React.FC = () => {
               <div className="flex items-center justify-center w-12 h-12 bg-blue-600 text-white rounded-full mx-auto mb-1 md:mb-4 text-xl font-bold">
                 2
               </div>
-              <h3 className="font-semibold text-lg text-slate-800 mb-2">
-                We Transcribe and Draft
+              <h3 className="font-semibold text-lg text-slate-800 mb-2 text-center">
+                Refine
               </h3>
               <p className="text-slate-600">
                 Our AI transcribes your recording and helps transform it into a
@@ -167,8 +167,8 @@ const HomePage: React.FC = () => {
               <div className="flex items-center justify-center w-12 h-12 bg-blue-600 text-white rounded-full mx-auto mb-1 md:mb-4 text-xl font-bold">
                 3
               </div>
-              <h3 className="font-semibold text-lg text-slate-800 mb-2">
-                Send Your Unique Email
+              <h3 className="font-semibold text-lg text-slate-800 mb-2 text-center">
+                Send
               </h3>
               <p className="text-slate-600">
                 Paste the personalised message into your email client and send
