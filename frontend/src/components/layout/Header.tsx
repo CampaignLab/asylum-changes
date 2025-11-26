@@ -6,9 +6,11 @@ const Header: React.FC = () => {
   return (
     <header className="bg-blue-900 text-white shadow-md">
       <div className="container mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between">
-        <div className="flex items-center mb-4 sm:mb-0">
-          <Mic className="h-8 w-8 mr-2" />
-          <h1 className="text-xl font-bold">Speak Up on Asylum Changes</h1>
+        <div className="flex items-center mb-4 sm:mb-0 max-w-full">
+          <Mic className="h-8 w-8 mr-2 shrink-0" />
+          <h1 className="text-xl font-bold leading-tight">
+            Speak Up on Asylum Changes
+          </h1>
         </div>
 
         <nav className="flex space-x-4">
