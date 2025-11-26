@@ -113,16 +113,71 @@ const HomePage: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-blue-800 opacity-50"></div>
           <div className="relative max-w-3xl mx-auto">
             <h1 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
-              Have Your Say on the UK's Asylum and Immigration Changes
+              Turn Your Voice into Action Against Asylum Changes
             </h1>
-            <p className="text-xl md:text-2xl opacity-90 mb-8 leading-relaxed">
-              Your voice matters. The government's proposed changes to asylum
-              and immigration could affect millions. Share your experience and
-              help shape the future.
+            <p className="text-xl md:text-2xl opacity-90 mb-4 leading-relaxed">
+              Record a voice note about how the asylum changes affect you. We'll
+              transcribe it, help you craft a powerful email, and enable you to
+              lobby your MP with your unique story.
+            </p>
+            <p className="text-lg opacity-80 leading-relaxed">
+              No writing required. Just speak your truth, and we'll handle the rest.
             </p>
           </div>
         </div>
       </section>
+
+      {/* How It Works Section */}
+      <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200">
+        <CardHeader>
+          <CardTitle className="text-2xl text-blue-900">How It Works</CardTitle>
+          <CardDescription className="text-slate-700">
+            Three simple steps to make your voice heard
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-blue-100">
+              <div className="flex items-center justify-center w-12 h-12 bg-blue-600 text-white rounded-full mb-4 text-xl font-bold">
+                1
+              </div>
+              <h3 className="font-semibold text-lg text-slate-800 mb-2">
+                Record Your Voice Note
+              </h3>
+              <p className="text-slate-600">
+                Share your personal experience with the asylum system in your own words.
+                Record directly in your browser or upload an audio file.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-blue-100">
+              <div className="flex items-center justify-center w-12 h-12 bg-blue-600 text-white rounded-full mb-4 text-xl font-bold">
+                2
+              </div>
+              <h3 className="font-semibold text-lg text-slate-800 mb-2">
+                We Transcribe & Draft
+              </h3>
+              <p className="text-slate-600">
+                Our AI transcribes your recording and helps transform it into a
+                well-structured email that powerfully communicates your message.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-blue-100">
+              <div className="flex items-center justify-center w-12 h-12 bg-blue-600 text-white rounded-full mb-4 text-xl font-bold">
+                3
+              </div>
+              <h3 className="font-semibold text-lg text-slate-800 mb-2">
+                Send Your Unique Lobby
+              </h3>
+              <p className="text-slate-600">
+                Review and send a personalized email to your MP. Each message is unique,
+                based on your own story—making your lobbying more impactful.
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Submission Section */}
       <Card>
@@ -175,9 +230,9 @@ const HomePage: React.FC = () => {
       {name.trim().length > 0 && (
         <Card>
           <CardHeader>
-            <CardTitle>How would you like to contribute?</CardTitle>
+            <CardTitle>Share Your Story</CardTitle>
             <CardDescription>
-              Choose the method that works best for you
+              Record or upload a voice note (up to 5 minutes). We'll transcribe it and help you create a personalized email to your MP.
             </CardDescription>
           </CardHeader>
           <CardContent>
