@@ -3,10 +3,10 @@ import { Heart } from "lucide-react";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-blue-900 text-white py-8 mt-auto">
+    <footer className="bg-blue-900 text-white py-4 mt-auto">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 gap-8">
-          <div className="space-y-4">
+        <div className="grid grid-cols-1 gap-4">
+          <div className="space-y-2">
             <h3 className="text-lg font-semibold border-b border-blue-700 pb-2">
               About This Project
             </h3>
@@ -17,8 +17,8 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="mt-8 pt-4 border-t border-blue-800 text-sm text-center">
-          <p className="text-sm pt-4 flex items-center justify-center">
+        <div className="mt-2 border-t border-blue-800 text-sm text-center">
+          <p className="text-sm pt-2 flex items-center justify-center">
             Made with <Heart className="h-4 w-4 mx-1 text-red-400" /> for
             fairness in the UK
           </p>
