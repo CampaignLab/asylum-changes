@@ -108,13 +108,13 @@ const HomePage: React.FC = () => {
     <div className="space-y-4">
       {/* Hero Section */}
       <section className="bg-blue-900 text-white rounded-xl overflow-hidden shadow-xl animate-fadeIn">
-        <div className="relative p-4 md:p-6">
+        <div className="relative p-4">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-blue-800 opacity-50"></div>
           <div className="relative max-w-3xl mx-auto">
             <h1 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
               Turn Your Voice into Action Against Asylum Changes
             </h1>
-            <p className="text-xl md:text-2xl opacity-90 md:mb-4 leading-relaxed">
+            <p className="text-xl md:text-2xl opacity-90 leading-relaxed">
               Turn your passion into political pressure. Don’t let a blank page
               stop you from standing up for asylum rights. Simply record your
               thoughts, and our tool will instantly transform your voice note
@@ -136,7 +136,7 @@ const HomePage: React.FC = () => {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="bg-white p-2 rounded-lg shadow-sm border border-blue-100">
-              <div className="flex items-center justify-center w-12 h-12 bg-blue-600 text-white rounded-full mx-auto mb-1 md:mb-4 text-xl font-bold">
+              <div className="flex items-center justify-center w-8 h-8 bg-blue-600 text-white rounded-full mx-auto mb-1 text-xl font-bold">
                 1
               </div>
               <h3 className="font-semibold text-lg text-slate-800 mb-2 text-center">
@@ -150,7 +150,7 @@ const HomePage: React.FC = () => {
             </div>
 
             <div className="bg-white p-2 rounded-lg shadow-sm border border-blue-100">
-              <div className="flex items-center justify-center w-12 h-12 bg-blue-600 text-white rounded-full mx-auto mb-1 md:mb-4 text-xl font-bold">
+              <div className="flex items-center justify-center w-8 h-8 bg-blue-600 text-white rounded-full mx-auto mb-1 text-xl font-bold">
                 2
               </div>
               <h3 className="font-semibold text-lg text-slate-800 mb-2 text-center">
@@ -164,7 +164,7 @@ const HomePage: React.FC = () => {
             </div>
 
             <div className="bg-white p-2 rounded-lg shadow-sm border border-blue-100">
-              <div className="flex items-center justify-center w-12 h-12 bg-blue-600 text-white rounded-full mx-auto mb-1 md:mb-4 text-xl font-bold">
+              <div className="flex items-center justify-center w-8 h-8 bg-blue-600 text-white rounded-full mx-auto mb-1 text-xl font-bold">
                 3
               </div>
               <h3 className="font-semibold text-lg text-slate-800 mb-2 text-center">
