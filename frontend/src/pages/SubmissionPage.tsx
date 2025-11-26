@@ -195,7 +195,7 @@ const SummaryCard = ({
           {summary}
         </div>
         <div className="text-sm text-slate-600 mt-4">
-          Click the button below to copy the summary to your clipboard. Then
+          Click the button below to copy the message to your clipboard. Then
           click the next button to create an email. Paste the message into the
           email, and send it!
         </div>

@@ -195,7 +195,7 @@ const ProcessingPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto space-y-8">
+    <div className="max-w-3xl mx-auto space-y-4">
       <div className="space-y-4">
         <h1 className="text-3xl font-bold text-slate-800">
           Processing Your Submission
@@ -207,8 +207,8 @@ const ProcessingPage: React.FC = () => {
       </div>
 
       <Card>
-        <CardContent className="p-8">
-          <div className="space-y-8">
+        <CardContent className="p-4">
+          <div className="space-y-4">
             <div className="w-full bg-slate-100 rounded-full h-4 overflow-hidden">
               <div
                 className={`h-full transition-all duration-500 ease-out ${

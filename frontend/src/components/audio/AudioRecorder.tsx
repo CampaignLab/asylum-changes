@@ -250,11 +250,6 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({
             </div>
           </div>
 
-          <AudioVisualizer
-            mediaRecorder={mediaRecorderRef.current}
-            isRecording={isRecording && !isPaused}
-          />
-
           <div className="flex flex-wrap gap-3 justify-center md:justify-start">
             {!isRecording && !hasRecording && (
               <Button
@@ -339,6 +334,11 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({
               <audio controls src={audioURL} className="w-full" />
             </div>
           )}
+
+          <AudioVisualizer
+            mediaRecorder={mediaRecorderRef.current}
+            isRecording={isRecording && !isPaused}
+          />
         </div>
       </div>
     </div>

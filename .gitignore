@@ -11,6 +11,8 @@ backend/.chalice/deployments/
 *.m4a
 
 .idea/
+*.orig
+*.rej
 
 # Logs
 logs

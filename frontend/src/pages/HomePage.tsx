@@ -120,7 +120,8 @@ const HomePage: React.FC = () => {
               lobby your MP with your unique story.
             </p>
             <p className="text-lg opacity-80 leading-relaxed">
-              No writing required. Just speak your truth, and we'll handle the rest.
+              No writing required. Just speak your truth, and we'll handle the
+              rest.
             </p>
           </div>
         </div>
@@ -144,8 +145,9 @@ const HomePage: React.FC = () => {
                 Record Your Voice Note
               </h3>
               <p className="text-slate-600">
-                Share your personal experience with the asylum system in your own words.
-                Record directly in your browser or upload an audio file.
+                Share your personal experience with the asylum system in your
+                own words. Record directly in your browser or upload an audio
+                file.
               </p>
             </div>
 
@@ -154,11 +156,12 @@ const HomePage: React.FC = () => {
                 2
               </div>
               <h3 className="font-semibold text-lg text-slate-800 mb-2">
-                We Transcribe & Draft
+                We Transcribe and Draft
               </h3>
               <p className="text-slate-600">
                 Our AI transcribes your recording and helps transform it into a
-                well-structured email that powerfully communicates your message.
+                well-structured email. Each message is unique, based on your own
+                story—making your lobbying more impactful.
               </p>
             </div>
 
@@ -167,11 +170,12 @@ const HomePage: React.FC = () => {
                 3
               </div>
               <h3 className="font-semibold text-lg text-slate-800 mb-2">
-                Send Your Unique Lobby
+                Send Your Unique Email
               </h3>
               <p className="text-slate-600">
-                Review and send a personalized email to your MP. Each message is unique,
-                based on your own story—making your lobbying more impactful.
+                Paste the personalised message into your email client and send
+                it to your MP. You can edit it as you wish - you're in charge
+                here, not AI.
               </p>
             </div>
           </div>
@@ -231,7 +235,8 @@ const HomePage: React.FC = () => {
           <CardHeader>
             <CardTitle>Share Your Story</CardTitle>
             <CardDescription>
-              Record or upload a voice note (up to 5 minutes). We'll transcribe it and help you create a personalized email to your MP.
+              Record or upload a voice note (up to 5 minutes). We'll transcribe
+              it and help you create a personalized email to your MP.
             </CardDescription>
           </CardHeader>
           <CardContent>
