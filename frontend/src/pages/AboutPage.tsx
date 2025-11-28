@@ -138,8 +138,8 @@ const AboutPage: React.FC = () => {
               <span className="font-medium mr-2">1.</span>
               <p>
                 We've invested in paid AI licensing to ensure your data isn't
-                used for training purposes. As disabled developers ourselves,
-                we've prioritized privacy over profit.
+                used for training purposes. As some of us are immigrant
+                developers ourselves, we've prioritized privacy over profit.
               </p>
             </li>
             <li className="flex items-start">
@@ -148,8 +148,8 @@ const AboutPage: React.FC = () => {
                 Your content is temporary - we only store it in your browser
                 session. Once you close your browser or leave the site,
                 everything you have done is discarded. Our goal is to support
-                disabled people, not to collect personal data. We are collecting
-                some metadata, see next part.
+                immigrants, not to collect personal data. We are collecting some
+                metadata, see next part.
               </p>
             </li>
           </ul>
