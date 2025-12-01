@@ -256,6 +256,7 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({
                 onClick={startRecording}
                 variant="primary"
                 icon={<Mic className="h-5 w-5" />}
+                className="plausible-event-name=start-recording"
               >
                 Start Recording
               </Button>
@@ -275,6 +276,7 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({
                   onClick={stopRecording}
                   variant="danger"
                   icon={<Square className="h-5 w-5" />}
+                  className="plausible-event-name=stop-recording"
                 >
                   Stop Recording
                 </Button>
@@ -319,7 +321,11 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({
                   Record Again
                 </Button>
 
-                <Button onClick={saveRecording} variant="primary">
+                <Button
+                  onClick={saveRecording}
+                  variant="primary"
+                  className="plausible-event-name=use-recording"
+                >
                   Use This Recording
                 </Button>
               </>

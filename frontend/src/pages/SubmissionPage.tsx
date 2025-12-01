@@ -211,6 +211,7 @@ const SummaryCard = ({
               <Copy className="h-5 w-5" />
             )
           }
+          className="plausible-event-name=copy-to-clipboard"
         >
           {copied ? "Copied!" : "Copy to Clipboard"}
         </Button>
@@ -219,6 +220,7 @@ const SummaryCard = ({
           variant={emailButtonVariant}
           icon={<Send className="h-5 w-5" />}
           onClick={() => window.open(mailto, "_blank")}
+          className="plausible-event-name=send-email"
         >
           {buttonText}
         </Button>
