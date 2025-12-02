@@ -40,6 +40,15 @@ SUPPORTED_CONTENT_TYPES = [
     "application/octet-stream",
 ]
 
+CONTENT_TYPE_TO_EXTENSION = {
+    "audio/mpeg": "mp3",
+    "audio/mp4": "mp4",
+    "audio/wav": "wav",
+    "audio/ogg": "ogg",
+    "audio/webm": "webm",
+    "application/octet-stream": "mp3",
+}
+
 # Load MP data at application startup and create a lookup dictionary
 mp_dict = {}
 with open("chalicelib/mpemails.csv", "r") as csvfile:
@@ -122,11 +131,13 @@ def transcribe():
     submission_id = str(uuid.uuid4())
     audio_file = app.current_request.raw_body
     content_type = app.current_request.headers.get("content-type", "audio/webm")
-    extension = content_type.split("/")[-1]
+    extension = CONTENT_TYPE_TO_EXTENSION.get(content_type, content_type.split("/")[-1])
     temp_file_path = f"/tmp/audio/{submission_id}.{extension}"
 
     try:
-        app.log.info(f"{submission_id}: Got data - {len(audio_file)/1024} kb")
+        app.log.info(
+            f"{submission_id}: Got data - {len(audio_file)/1024} kb - file path {temp_file_path}"
+        )
 
         # Write audio data to temporary file
         with open(temp_file_path, "wb") as f:
